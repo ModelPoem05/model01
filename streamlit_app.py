@@ -7,13 +7,13 @@ st.title("AI-Powered Career Path Generator")
 # User Input
 name = st.text_input("Enter your name:")
 years_experience = st.number_input("Enter your years of experience:", min_value=0, step=1)
-
+interest_in = st.text_input("Enter what you are interested in:")
 # Generate Career Path
 if st.button("Generate Career Path"):
-    if name and years_experience >= 0:
+    if name and years_experience and interest_in >= 0:
         client = genai.Client(api_key="AIzaSyAtyJOLx6YqSmrFH5Hqsxg2FoHjRvejPnw")
         prompt = (f"As an expert career guide counselor, make a detailed career path for me. My name is {name}, "
-                  f"I am interested in MERN stack development, and I have {years_experience} years of experience.")
+                  f"I am interested in {interest_in} , and I have {years_experience} years of experience.")
         response = client.models.generate_content(model="gemini-1.5-flash", contents=prompt)
         
         st.subheader("Career Path Recommendation:")
